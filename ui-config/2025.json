@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "customerId": "",
+  "site": {
+    "host": "zybm.baoming001.com"
+  },
+  "rules": [
+    {
+      "id": "rule-001",
+      "selector": ".header p",
+      "scope": {},
+      "styles": {
+        "color": "#ff0000",
+        "fontSize": "50px"
+      },
+      "classes": {
+        "add": [],
+        "remove": []
+      },
+      "attributes": {},
+      "customCss": "",
+      "enabled": true
+    },
+    {
+      "id": "rule-002",
+      "selector": ".box_title1",
+      "scope": {},
+      "styles": {
+        "display": "none"
+      },
+      "classes": {
+        "add": [],
+        "remove": []
+      },
+      "attributes": {},
+      "customCss": "",
+      "enabled": true
+    },
+    {
+      "id": "rule-003",
+      "selector": ".content1",
+      "scope": {},
+      "styles": {
+        "paddingTop": "0",
+        "paddingRight": "0",
+        "paddingBottom": "0",
+        "paddingLeft": "0"
+      },
+      "classes": {
+        "add": [],
+        "remove": []
+      },
+      "attributes": {},
+      "customCss": "",
+      "enabled": true
+    },
+    {
+      "id": "rule-004",
+      "selector": ".box_text",
+      "scope": {},
+      "styles": {},
+      "classes": {
+        "add": [],
+        "remove": []
+      },
+      "attributes": {},
+      "customCss": "",
+      "enabled": true
+    },
+    {
+      "id": "rule-005",
+      "selector": ".box_text",
+      "scope": {},
+      "styles": {
+        "marginTop": "0",
+        "marginRight": "0",
+        "marginBottom": "0",
+        "marginLeft": "0",
+        "color": "#ff0000"
+      },
+      "classes": {
+        "add": [],
+        "remove": []
+      },
+      "attributes": {},
+      "customCss": "",
+      "enabled": true
+    },
+    {
+      "id": "rule-006",
+      "selector": "body:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > span:nth-of-type(1)",
+      "scope": {},
+      "styles": {
+        "fontSize": "30px",
+        "color": "#eb0000"
+      },
+      "classes": {
+        "add": [],
+        "remove": []
+      },
+      "attributes": {},
+      "customCss": "",
+      "enabled": true
+    }
+  ]
+}
