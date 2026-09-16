@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://saas-ui-override.dev/schema/ui-config.schema.json",
+  "title": "SaaS UI Override Config",
+  "description": "SaaS UI Override V1 配置文件的单一数据契约,与 extension/src/shared/types/config.ts 保持一致",
+  "type": "object",
+  "required": ["version", "customerId", "site", "rules"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "integer",
+      "const": 1
+    },
+    "customerId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "site": {
+      "type": "object",
+      "required": ["host"],
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "rules": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/rule" }
+    }
+  },
+  "$defs": {
+    "rule": {
+      "type": "object",
+      "required": ["id", "selector", "scope", "styles", "classes", "attributes", "customCss", "enabled"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selector": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "匹配有效路径:hash 路由(URL 形如 /wsbm/#/guidePage?...)取 hash 中 '#/' 之后、'?' 之前的部分,否则取 location.pathname。缺失/空 = 全站生效;'/exam' 与 '/exam/*' 等价:精确匹配 /exam 或其子路径 /exam/...(边界为 / 或结尾,不会误配 /examination)"
+            }
+          }
+        },
+        "styles": {
+          "type": "object",
+          "description": "可视化 CSS,camelCase 属性名,Runtime 转 kebab-case 并默认加 !important",
+          "additionalProperties": { "type": "string" }
+        },
+        "classes": {
+          "type": "object",
+          "required": ["add", "remove"],
+          "additionalProperties": false,
+          "properties": {
+            "add": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "remove": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "attributes": {
+          "type": "object",
+          "description": "属性覆盖,如 img 的 src",
+          "additionalProperties": { "type": "string" }
+        },
+        "customCss": {
+          "type": "string",
+          "description": "开发人员手写 CSS,作为全局 CSS 注入,不强制 !important"
+        },
+        "enabled": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

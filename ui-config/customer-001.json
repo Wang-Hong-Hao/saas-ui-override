@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "customerId": "customer-001",
+  "site": {
+    "host": "exam.example.com"
+  },
+  "rules": [
+    {
+      "id": "rule-start-button",
+      "selector": ".exam-page .start-button",
+      "scope": {
+        "path": "/exam"
+      },
+      "styles": {
+        "fontSize": "16px",
+        "backgroundColor": "#ff6600",
+        "borderRadius": "8px"
+      },
+      "classes": {
+        "add": ["font-medium", "shadow-sm"],
+        "remove": ["rounded-md"]
+      },
+      "attributes": {},
+      "customCss": ".exam-page .start-button:hover { transform: translateY(-2px); }",
+      "enabled": true
+    },
+    {
+      "id": "rule-logo",
+      "selector": ".exam-page img.logo",
+      "scope": {},
+      "styles": {},
+      "classes": {
+        "add": [],
+        "remove": []
+      },
+      "attributes": {
+        "src": "https://cdn.example.com/ui-override/logo-customer-001.png",
+        "alt": "customer-001"
+      },
+      "customCss": "",
+      "enabled": true
+    }
+  ]
+}

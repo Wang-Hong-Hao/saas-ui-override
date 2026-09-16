@@ -1,0 +1,15 @@
+{
+  "name": "saas-ui-override-runtime",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "SaaS UI Override Runtime:script + JSON 在运行时应用 UI 覆盖,无框架依赖",
+  "scripts": {
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.0",
+    "vite": "^7.1.0"
+  }
+}
