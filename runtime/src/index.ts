@@ -53,11 +53,16 @@ class Runtime implements UIOverrideRuntime {
     }
 
     const cached = readCachedConfig(resolved.baseUrl)
-    if (cached) this.applyConfig(cached)
+    if (cached) {
+      if (!cached.customerId) cached.customerId = resolved.customerId
+      this.applyConfig(cached)
+    }
 
     try {
       const config = await fetchConfig(resolved.fetchUrl)
       if (this.destroyed) return
+      // 配置 JSON 中 customerId 可省略:用 URL 解析出的租户标识回填
+      if (!config.customerId) config.customerId = resolved.customerId
       // 与缓存内容相同时重复 apply 无副作用(restore-all + 重应用,幂等)
       this.applyConfig(config)
       writeCachedConfig(resolved.baseUrl, config)

@@ -4,7 +4,7 @@
   "title": "SaaS UI Override Config",
   "description": "SaaS UI Override V1 配置文件的单一数据契约,与 extension/src/shared/types/config.ts 保持一致",
   "type": "object",
-  "required": ["version", "customerId", "site", "rules"],
+  "required": ["version", "site", "rules"],
   "additionalProperties": false,
   "properties": {
     "version": {
@@ -13,7 +13,7 @@
     },
     "customerId": {
       "type": "string",
-      "minLength": 1
+      "description": "可选,允许省略或留空:使用 {vhost} 等 URL 占位符时由 Runtime 从 URL 解析回填"
     },
     "site": {
       "type": "object",

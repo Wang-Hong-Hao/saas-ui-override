@@ -69,7 +69,10 @@ export function validateUIConfig(data: unknown): ValidationResult {
   if (data.version !== UI_CONFIG_VERSION) {
     errors.push(`version: 必须是 ${UI_CONFIG_VERSION}(当前: ${JSON.stringify(data.version)})`)
   }
-  if (!isNonEmptyString(data.customerId)) errors.push('customerId: 必须是非空字符串')
+  // customerId 可选:租户标识可由 Runtime 从 URL 占位符(如 {vhost})解析回填,JSON 中允许省略或留空
+  if (data.customerId !== undefined && typeof data.customerId !== 'string') {
+    errors.push('customerId: 必须是字符串')
+  }
   if (!isPlainObject(data.site)) {
     errors.push('site: 必须是对象')
   } else if (!isNonEmptyString(data.site.host)) {
@@ -81,5 +84,7 @@ export function validateUIConfig(data: unknown): ValidationResult {
     data.rules.forEach((rule, index) => validateRule(rule, index, errors))
   }
   if (errors.length > 0) return { ok: false, errors }
-  return { ok: true, config: data as unknown as UIConfig, errors: [] }
+  const config = data as unknown as UIConfig
+  if (typeof config.customerId !== 'string') config.customerId = ''
+  return { ok: true, config, errors: [] }
 }
