@@ -52,7 +52,7 @@ class Runtime implements UIOverrideRuntime {
       return
     }
 
-    const cached = readCachedConfig(resolved.baseUrl)
+    const cached = options.cache ? readCachedConfig(resolved.baseUrl) : null
     if (cached) {
       if (!cached.customerId) cached.customerId = resolved.customerId
       this.applyConfig(cached)
@@ -65,7 +65,7 @@ class Runtime implements UIOverrideRuntime {
       if (!config.customerId) config.customerId = resolved.customerId
       // 与缓存内容相同时重复 apply 无副作用(restore-all + 重应用,幂等)
       this.applyConfig(config)
-      writeCachedConfig(resolved.baseUrl, config)
+      if (options.cache) writeCachedConfig(resolved.baseUrl, config)
     } catch (error) {
       if (cached) {
         // 已有缓存:静默使用缓存,debug 模式输出提示

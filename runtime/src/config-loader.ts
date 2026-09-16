@@ -8,6 +8,8 @@ export interface ScriptOptions {
   /** 配置版本号(方案第 38 章):追加为 ?v=N 穿透缓存 */
   configVersion: string
   debug: boolean
+  /** localStorage 缓存开关(默认开启);data-cache="false"/"0" 时完全跳过缓存读写 */
+  cache: boolean
 }
 
 /** 常见的租户标识字段,用于 customerId 兜底 */
@@ -15,8 +17,14 @@ const TENANT_KEYS = ['vhost', 'customerId', 'customer_id', 'tenant', 'tenantId']
 
 export function readScriptOptions(script: HTMLOrSVGScriptElement | null): ScriptOptions | null {
   if (!script || !(script instanceof HTMLScriptElement)) return null
-  const { customerId = '', configUrl = '', configVersion = '', debug = '' } = script.dataset
-  return { customerId, configUrl, configVersion, debug: debug === 'true' || debug === '1' }
+  const { customerId = '', configUrl = '', configVersion = '', debug = '', cache = '' } = script.dataset
+  return {
+    customerId,
+    configUrl,
+    configVersion,
+    debug: debug === 'true' || debug === '1',
+    cache: cache !== 'false' && cache !== '0',
+  }
 }
 
 /**

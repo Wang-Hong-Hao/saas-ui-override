@@ -105,6 +105,7 @@ scope 匹配的是「有效路径」:hash 路由(`#/guidePage?...`)取 hash 中 
 ### 其他可选属性
 
 - `data-config-version="12"` → 请求配置时追加 `?v=12` 穿透缓存(版本号由开发人员手动管理;占位符替换之后追加)
+- `data-cache="false"` → 关闭 localStorage 缓存(默认开启;关闭后每次都等网络配置,不读也不写缓存)
 - `data-debug="true"` → 输出 rule 匹配诊断(0 匹配 / 无效 selector),生产环境不要开
 
 示例配置见仓库 `ui-config/customer-001.json`(符合 `schema/ui-config.schema.json`,含 scope / styles / classes / attributes / customCss / enabled 全字段)。
